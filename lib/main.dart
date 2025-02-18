@@ -1,3 +1,4 @@
+import 'package:aula02_combustivel/widgets/logo.widget.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -36,9 +37,7 @@ class Homepage extends StatelessWidget {
       backgroundColor: Theme.of(context).colorScheme.primary,
       body: ListView(
         children: [
-          Text('teste'),
-          Image.asset("assets/images/aog-white.png"),
-          Text('teste'),
+          Logo(),
         ],
       ),
     );

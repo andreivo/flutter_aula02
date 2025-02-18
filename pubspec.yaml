@@ -19,11 +19,9 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-
-assets:
-  - assets/images/aog-white.png
-    
-fonts:
-  - family: Big Shoulders Display
-    fonts:
-      - asset: assets/fonts/bigshouldersdisplay-light.ttf
+  assets:
+    - assets/images/aog-white.png   
+  fonts:
+    - family: Big Shoulders Display
+      fonts:
+        - asset: assets/fonts/bigshouldersdisplay-light.ttf
