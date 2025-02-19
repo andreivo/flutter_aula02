@@ -1,4 +1,4 @@
-import 'package:aula02_combustivel/widgets/logo.widget.dart';
+import 'package:aula02_combustivel/pages/home.page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -24,22 +24,6 @@ class MainApp extends StatelessWidget {
         ),
       ),
       home: Homepage(),
-    );
-  }
-}
-
-class Homepage extends StatelessWidget {
-  const Homepage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.primary,
-      body: ListView(
-        children: [
-          Logo(),
-        ],
-      ),
     );
   }
 }
