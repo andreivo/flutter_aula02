@@ -11,8 +11,10 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  final TextEditingController _gasCtrl = TextEditingController();
-  final TextEditingController _alcCtrl = TextEditingController();
+  final TextEditingController _gasCtrl =
+      TextEditingController(text: "R\$ 0,00");
+  final TextEditingController _alcCtrl =
+      TextEditingController(text: "R\$ 0,00");
   var busy = false;
   var complete = false;
   var resultText = "Compensa utilizar álcool";
@@ -47,10 +49,24 @@ class _HomepageState extends State<Homepage> {
   }
 
   Future calculate() async {
-    double alc =
-        double.parse(_alcCtrl.text.replaceAll(RegExp(r'[,.]'), '')) / 100;
-    double gas =
-        double.parse(_gasCtrl.text.replaceAll(RegExp(r'[,.]'), '')) / 100;
+    double alc = double.parse(_alcCtrl.text
+            .replaceAll(RegExp(r'[,.]'), '')
+            .replaceAll(RegExp(r'[^\d,]'), '')) /
+        100;
+    double gas = double.parse(_gasCtrl.text
+            .replaceAll(RegExp(r'[,.]'), '')
+            .replaceAll(RegExp(r'[^\d,]'), '')) /
+        100;
+
+    if (alc <= 0 || gas <= 0) {
+      setState(() {
+        resultText = "Valores inválidos!";
+        complete = true;
+        busy = false;
+      });
+      return;
+    }
+
     double res = alc / gas;
 
     setState(() {
@@ -76,8 +92,8 @@ class _HomepageState extends State<Homepage> {
 
   reset() {
     setState(() {
-      _alcCtrl.text = '';
-      _gasCtrl.text = '';
+      _alcCtrl.text = "R\$ 0,00";
+      _gasCtrl.text = "R\$ 0,00";
       complete = false;
       busy = false;
       color = Theme.of(context).colorScheme.primary;

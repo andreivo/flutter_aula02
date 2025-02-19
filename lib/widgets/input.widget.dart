@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_multi_formatter/formatters/currency_input_formatter.dart';
-import 'package:flutter_multi_formatter/formatters/formatter_utils.dart';
+import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 
 class Input extends StatelessWidget {
   var label = '';
@@ -33,15 +32,25 @@ class Input extends StatelessWidget {
           child: TextFormField(
             controller: ctrl,
             keyboardType: TextInputType.number,
-            inputFormatters: [CurrencyInputFormatter()],
+            maxLength: 8,
+            inputFormatters: [
+              CurrencyInputFormatter(
+                leadingSymbol: 'R\$ ', // Adiciona o símbolo do Real
+                useSymbolPadding: true, // Espaço após o símbolo (opcional)
+                thousandSeparator: ThousandSeparator.Period,
+                mantissaLength: 2,
+                maxTextLength: 5,
+              ),
+            ],
             decoration: InputDecoration(
               border: InputBorder.none,
-              hintText: '0.00',
+              hintText: 'R\$ 0,00',
               hintStyle: TextStyle(
                 color: Colors.white,
                 fontSize: 45,
                 fontFamily: 'Big Shoulders Display',
               ),
+              counterText: "",
             ),
             style: TextStyle(
               color: Colors.white,
